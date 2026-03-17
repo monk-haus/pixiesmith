@@ -103,20 +103,6 @@ export default function Hero() {
         Pixiesmith <span className="opacity-50 block mt-1">— Wearable symbols of transformation</span>
       </div>
 
-      <div
-        ref={(el) => { if (el) textElements.current[4] = el; }}
-        className="absolute top-1/2 -translate-y-1/2 left-6 flex flex-col gap-2 md:hidden opacity-0 z-[2] text-[#fafafa]"
-      >
-        <span
-          className="text-[2.2rem] leading-none font-normal"
-          style={{ fontFamily: "var(--font-realm), ui-serif, Georgia, serif" }}
-        >
-          PIXIESMITH
-        </span>
-        <span className="text-[10px] uppercase tracking-[0.2em] text-[#fafafa]/50 font-medium">
-          — Wearable symbols of transformation
-        </span>
-      </div>
 
       <div
         ref={(el) => { if (el) textElements.current[2] = el; }}
