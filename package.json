@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:cf": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js",
-    "preview:cf": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js && wrangler pages dev",
-    "deploy": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js && wrangler pages deploy"
+    "build:cf": "opennextjs-cloudflare build && cp -r .open-next/cloudflare .open-next/middleware .open-next/server-functions .open-next/assets/ && mkdir -p .open-next/assets/.build && cp -r .open-next/.build/durable-objects .open-next/assets/.build/ && cp .open-next/worker.js .open-next/assets/_worker.js",
+    "preview:cf": "npm run build:cf && wrangler pages dev .open-next/assets",
+    "deploy": "npm run build:cf && wrangler pages deploy .open-next/assets"
   },
   "dependencies": {
     "gsap": "^3.14.2",
