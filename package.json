@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:cf": "opennextjs-cloudflare build",
-    "preview:cf": "opennextjs-cloudflare build && wrangler pages dev",
-    "deploy": "opennextjs-cloudflare build && wrangler pages deploy"
+    "build:cf": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js",
+    "preview:cf": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js && wrangler pages dev",
+    "deploy": "opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js && wrangler pages deploy"
   },
   "dependencies": {
     "gsap": "^3.14.2",
