@@ -44,7 +44,10 @@ export default function Nav() {
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex items-center justify-end p-6">
+        <div className="flex items-center justify-between p-6">
+          <span className="text-xl font-normal text-[#fafafa]" style={{ fontFamily: "var(--font-realm), ui-serif, Georgia, serif" }}>
+            PIXIESMITH
+          </span>
           <button
             className="text-[10px] uppercase tracking-[0.15em] text-[#fafafa] font-medium hover:opacity-50 transition-opacity"
             onClick={() => setMenuOpen(false)}
@@ -54,23 +57,6 @@ export default function Nav() {
         </div>
 
         <nav className="flex-1 flex flex-col justify-center px-6 gap-8">
-          <div
-            className={`flex flex-col gap-1 mb-4 transition-all duration-500 ${
-              menuOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-            }`}
-            style={{ transitionDelay: menuOpen ? "50ms" : "0ms" }}
-          >
-            <span
-              className="text-[2.5rem] leading-none font-normal text-[#fafafa]"
-              style={{ fontFamily: "var(--font-realm), ui-serif, Georgia, serif" }}
-            >
-              PIXIESMITH
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#fafafa]/40 font-medium">
-              — Wearable symbols of transformation
-            </span>
-          </div>
-
           {[
             { href: "/shop", label: "Shop Collection", delay: "150ms" },
             { href: "/arcana-archive", label: "Arcana Archive", delay: "250ms", muted: true },
