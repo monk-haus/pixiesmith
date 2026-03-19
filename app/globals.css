@@ -1,76 +1,93 @@
 @import "tailwindcss";
 
 :root {
-    --background: #fafafa;
-    --foreground: #0a0a0a;
+  --background: #F5F3F7;
+  --foreground: #0D0B0F;
 }
 
 @theme {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-    --font-heading: var(--font-realm), ui-serif, Georgia, serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-realm), ui-serif, Georgia, serif;
 }
 
 @layer base {
-    body {
-        background-color: var(--background);
-        color: var(--foreground);
-        font-family: var(--font-sans);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: var(--font-realm), ui-serif, Georgia, serif;
-        letter-spacing: -0.02em;
-    }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.05em;
+    font-weight: 300;
+  }
 }
 
 @layer utilities {
+  .grid-system {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
     .grid-system {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        max-width: 1440px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-system {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2.5rem;
+    }
+  }
+
+  .vertical-rl {
+    writing-mode: vertical-rl;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+  }
+
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100%);
     }
 
-    @media (min-width: 768px) {
-        .grid-system {
-            grid-template-columns: repeat(8, minmax(0, 1fr));
-            gap: 1.5rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+    50% {
+      transform: translateY(0);
     }
 
-    @media (min-width: 1024px) {
-        .grid-system {
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-        }
+    100% {
+      transform: translateY(100%);
     }
-
-    @keyframes slide-down {
-        0% {
-            transform: translateY(-100%);
-        }
-
-        50% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(100%);
-        }
-    }
+  }
 }

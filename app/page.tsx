@@ -1,40 +1,40 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 
-export default function Home() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-  useEffect(() => {
+export default function Home() {
+  useGSAP(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
       smoothWheel: true,
       touchMultiplier: 2,
     });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    lenis.on("scroll", ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    const tickerFn = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerFn);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
+      gsap.ticker.remove(tickerFn);
     };
-  }, []);
+  });
 
   return (
-    <main ref={scrollRef} className="relative w-full text-foreground bg-background">
+    <main className="relative w-full text-foreground bg-background">
       <Nav />
       <Hero />
-      <section className="h-[150vh] w-full bg-background border-t border-foreground/10" />
+      <section className="h-screen w-full bg-background" />
     </main>
   );
 }
